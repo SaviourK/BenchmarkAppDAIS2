@@ -21,7 +21,7 @@ import cz.laryngektomie.benchmark.service.RetrieveDataService;
 
 public class Benchmark {
 
-	private static final int NUMBER_OF_EXECUTION = 5;
+	private static final int NUMBER_OF_EXECUTIONS = 5;
 	private static final boolean CLEAN_UP = true;
 
 	private final FakeDataService fakeDataService;
@@ -47,9 +47,11 @@ public class Benchmark {
 	}
 
 	public void run() throws NoSuchAlgorithmException, SQLException {
-		int i = 0;
-		while (i < NUMBER_OF_EXECUTION) {
+		int i = 1;
+		while (i <= NUMBER_OF_EXECUTIONS) {
+			System.out.println("Start execution " + i + "/" + NUMBER_OF_EXECUTIONS);
 			benchmark();
+			System.out.println("END execution " + i + "/" + NUMBER_OF_EXECUTIONS);
 			i++;
 		}
 	}
