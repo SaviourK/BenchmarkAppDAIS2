@@ -15,10 +15,14 @@ import cz.laryngektomie.benchmark.dao.security.UserDao;
 import cz.laryngektomie.benchmark.model.article.Article;
 import cz.laryngektomie.benchmark.model.forum.Topic;
 import cz.laryngektomie.benchmark.model.security.User;
+import cz.laryngektomie.benchmark.service.DeleteDataService;
 import cz.laryngektomie.benchmark.service.FakeDataService;
 import cz.laryngektomie.benchmark.service.RetrieveDataService;
 
 public class Benchmark {
+
+	private static final int NUMBER_OF_EXECUTION = 5;
+	private static final boolean CLEAN_UP = true;
 
 	private final FakeDataService fakeDataService;
 	private final RetrieveDataService retrieveDataService;
@@ -43,11 +47,15 @@ public class Benchmark {
 	}
 
 	public void run() throws NoSuchAlgorithmException, SQLException {
-		benchmark();
+		int i = 0;
+		while (i < NUMBER_OF_EXECUTION) {
+			benchmark();
+			i++;
+		}
 	}
 
 	private void benchmark() throws NoSuchAlgorithmException, SQLException {
-
+		System.out.println("START BENCHMARK");
 		long totalTimeStart = System.currentTimeMillis();
 		// OP 1.1 Vytvoření uživatele - 50x
 		List<User> users = fakeDataService.createUsers();
@@ -147,5 +155,13 @@ public class Benchmark {
 				totalFindPostsByAuthorUsername + totalTop10NewestTopicsOrPostTime;
 		System.out.println("Total time only queries: " + totalTimeQuery + " ms");
 		System.out.println("Total time including creating objects to query: " + totalTime + " ms");
+
+		if (CLEAN_UP) {
+			DeleteDataService deleteDataService = new DeleteDataService();
+			System.out.println("START CLEAN UP AFTER BENCHMARK");
+			deleteDataService.cleanUp();
+			System.out.println("END CLEAN UP AFTER BENCHMARK");
+		}
+		System.out.println("END BENCHMARK");
 	}
 }

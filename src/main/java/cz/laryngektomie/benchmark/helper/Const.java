@@ -15,7 +15,7 @@ public class Const {
 
     // total query
     public static final int START_ID_USER = 1001;
-    public static final int TOTAL_CREATE_USER_QUERY = 50;
+    public static final int TOTAL_CREATE_USER_QUERY = 30;
 
     public static final int TOTAL_USER_TOPIC_COUNT_QUERY = 250;
 
@@ -25,12 +25,11 @@ public class Const {
     public static final int TOTAL_FIND_ARTICLES_BY_ARTICLE_TYPE_QUERY = 500;
 
     public static final int START_ID_TOPIC = 50_001;
-    public static final int TOTAL_CREATE_TOPIC = 100;
+    public static final int TOTAL_CREATE_TOPIC = 50;
 
     public static final int TOTAL_TOPIC_POSTS_QUERY = 1000;
 
     public static final int TOTAL_FIND_POSTS_BY_AUTHOR_USERNAME_QUERY = 100;
-
 
     public static final int TOTAL_TOP_10_NEWEST_TOPICS_OR_POSTS_QUERY = 1000;
 
